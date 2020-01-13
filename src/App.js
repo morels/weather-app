@@ -1,14 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Home from "./Home";
-
-function About() {
-  return <h2>About</h2>;
-}
-
-function Users() {
-  return <h2>Users</h2>;
-}
+import days from "./Days";
 
 function App() {
   return (
@@ -19,12 +12,13 @@ function App() {
             <li>
               <Link to="/">Home</Link>
             </li>
-            <li>
-              <Link to="/about">About</Link>
-            </li>
-            <li>
-              <Link to="/users">Users</Link>
-            </li>
+            {days.map((d, i) => {
+              return (
+                <li key={i.toString()}>
+                  <Link to={`/${d.url}`}>{d.label.long}</Link>
+                </li>
+              );
+            })}
           </ul>
         </nav>
 
@@ -32,10 +26,10 @@ function App() {
             renders the first one that matches the current URL. */}
         <Switch>
           <Route path="/about">
-            <About />
+            {/* <About /> */}
           </Route>
           <Route path="/users">
-            <Users />
+            {/* <Users /> */}
           </Route>
           <Route path="/">
             <Home />
