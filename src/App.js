@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Home from "./Home";
 import days from "./Days";
+import Day from "./Day";
 
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
             {days.map((d, i) => {
               return (
                 <li key={i.toString()}>
-                  <Link to={`/${d.url}`}>{d.label.long}</Link>
+                  <Link to={`/day/${d.url}`}>{d.label.long}</Link>
                 </li>
               );
             })}
@@ -25,15 +26,8 @@ function App() {
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>
-          <Route path="/about">
-            {/* <About /> */}
-          </Route>
-          <Route path="/users">
-            {/* <Users /> */}
-          </Route>
-          <Route path="/">
-            <Home />
-          </Route>
+          <Route path="/day/:dayname" component={Day} />
+          <Route path="/" component={Home} />
         </Switch>
       </div>
     </Router>
